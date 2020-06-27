@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class Result extends StatelessWidget {
   final int score;
+  final Function reset;
 
-  Result(this.score);
+  Result(this.score, this.reset);
 
   var text = "";
 
@@ -27,21 +28,23 @@ class Result extends StatelessWidget {
           'You are $text',
           //temp commit
           style: TextStyle(
-            color: Colors.deepOrange,
+            color: Colors.black,
             fontSize: 30,
             fontWeight: FontWeight.w700,
             fontStyle: FontStyle.italic,
           ),
         ),
-        RaisedButton(
+        OutlineButton(
           color: Colors.blue,
-          elevation: 0,
           textTheme: ButtonTextTheme.primary,
-          textColor: Colors.white,
+          textColor: Colors.blue,
           child: Text(
-            'You did it!',
+            'Reset',
+            style: TextStyle(
+              fontSize: 20,
+            ),
           ),
-          onPressed: () {},
+          onPressed: reset,
         ),
       ],
     ));
