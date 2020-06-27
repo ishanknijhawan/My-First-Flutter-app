@@ -4,18 +4,32 @@ import 'package:quiz_app/result.dart';
 
 void main() => runApp(MyApp());
 
-var _questions = [
+var totalScore = 0;
+const _questions = [
   {
     'questionText': 'What\'s your favorite color ?',
-    'answer': ['Red', 'Blue', 'Green']
+    'answer': [
+      {'color': 'Red', 'score': 8},
+      {'color': 'Blue', 'score': 15},
+      {'color': 'Green', 'score': 10}
+    ]
   },
   {
     'questionText': 'What\'s your favorite animal ?',
-    'answer': ['Panda', 'Lion', 'Tiger', 'Koala']
+    'answer': [
+      {'color': 'Panda', 'score': 8},
+      {'color': 'Lion', 'score': 15},
+      {'color': 'Tiger', 'score': 10},
+      {'color': 'Koala', 'score': 21},
+    ]
   },
   {
     'questionText': 'What\'s your favorite language ?',
-    'answer': ['Dart', 'Kotlin', 'Python']
+    'answer': [
+      {'color': 'Dart', 'score': 8},
+      {'color': 'Kotlin', 'score': 15},
+      {'color': 'Python', 'score': 5}
+    ]
   }
 ];
 var _index = 0;
@@ -36,17 +50,19 @@ class _MyAppState extends State<MyApp> {
         body: _index < _questions.length
             ? Quiz(
                 questions: _questions,
-                answerQuestion: _answerQuestion,
+                answerQuestion: _answerQuestions,
                 index: _index,
               )
-            : Result(),
+            : Result(totalScore),
       ),
     );
   }
 
-  _answerQuestion() {
+  _answerQuestions(score) {
     setState(() {
       _index = _index + 1;
+      totalScore += score;
+      print('total score is $totalScore');
       print("question index is $_index");
     });
   }
